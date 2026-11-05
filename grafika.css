@@ -1,0 +1,301 @@
+/* --- 1. RESET A BAREVNÁ PALETA (Čínská inspirace + Material čistota) --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  
+  --primary: #b71c1c;         
+  --primary-hover: #8e0000;  
+  --accent-gold: #fbc02d;     
+  --accent-gold-hover: #f57f17;
+  --bg-body: #faf7f2;         
+  --surface: #ffffff;         
+  --text-main: #2b2626;       
+  --text-muted: #6e6565;      
+  --border: #e8ded1;        
+  --aside-bg: #fff8e1;        
+  --aside-border: #ffd54f;    
+  
+  
+  --shadow-1: 0 2px 5px rgba(90, 20, 20, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-2: 0 4px 10px rgba(90, 20, 20, 0.15);
+  --radius: 6px;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Serif", Georgia, serif;
+  line-height: 1.65;
+  color: var(--text-main);
+  background-color: var(--bg-body);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Serif", Georgia, serif;
+  line-height: 1.65;
+  color: var(--text-main);
+
+  
+  background-color: var(--bg-body);
+  background-image: 
+
+    linear-gradient(rgba(250, 247, 242, 0.45), rgba(250, 247, 242, 0.45)),
+    url('chinese\ .webp');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* -------------------------------- */
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+   
+}
+
+
+body > header {
+  background-color: var(--primary);
+  border-bottom: 3px solid var(--accent-gold); /* Zlatý předěl typický pro dynastickou architekturu */
+  box-shadow: var(--shadow-2);
+  padding: 1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+ 
+
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff8e7;            
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  background-color: var(--primary-hover);
+  color: var(--accent-gold);
+}
+
+nav a[aria-current="page"] {
+  background-color: var(--accent-gold);
+  color: var(--primary);      
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+article {
+  background-color: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+  padding: 2.5rem;
+  position: relative;
+}
+
+
+article::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-gold), var(--primary));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+
+article > header {
+  border-bottom: 2px dashed var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+hgroup h1 {
+  font-size: 2.2rem;
+  line-height: 1.25;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+hgroup p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+article > header > p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  border-left: 5px solid var(--accent-gold); 
+  padding-left: 0.75rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+
+figure {
+  margin: 1.8rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-1);
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+
+iframe {
+  width: 100%;
+  max-width: 100%;
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-1);
+}
+
+
+aside {
+  background-color: var(--aside-bg);
+  border: 1px solid var(--aside-border);
+  border-left: 6px solid var(--primary); 
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+aside h3 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+dl dt {
+  font-weight: bold;
+  color: var(--primary-hover);
+  margin-top: 0.75rem;
+}
+
+dl dd {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+mark {
+  background-color: #ffe082;
+  color: #3e2723;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+}
+
+abbr {
+  text-decoration: underline dotted var(--primary);
+  cursor: help;
+}
+
+
+body > footer {
+  background-color: #211919; 
+  color: #efebe9;
+  border-top: 3px solid var(--primary);
+  padding: 2.2rem 1rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+body > footer p {
+  margin-bottom: 1rem;
+}
+
+body > footer nav ul {
+  justify-content: center;
+}
+
+body > footer nav a {
+  color: var(--accent-gold);
+  text-decoration: none;
+}
+
+body > footer nav a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  body > header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  article {
+    padding: 1.25rem;
+  }
+
+  hgroup h1 {
+    font-size: 1.6rem;
+  }
+
+  .site-logo {
+  width: 160px;
+  height: auto;
+  max-height: 40px;
+  display: block;
+  object-fit: contain;
+}
+}

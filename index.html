@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje projekty</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            line-height: 1.55;
+            color: #22262b;
+            background: #eef1f4;
+        }
+
+        a { color: inherit; }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+       
+
+        header {
+            border-bottom: 2px solid #22262b;
+            position: relative;
+            z-index: 10;
+        }
+
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 22px;
+            text-decoration: none;
+        }
+
+        
+        .menu-toggle {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 2px solid #22262b;
+            padding: 6px 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .menu-toggle:focus-visible + .menu-btn {
+            outline: 2px solid #22262b;
+            outline-offset: 3px;
+        }
+
+        .main-nav > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 32px;
+        }
+
+        .main-nav li { position: relative; }
+
+        .main-nav a {
+            display: block;
+            text-decoration: none;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:focus-visible {
+            border-bottom-color: #22262b;
+            outline: none;
+        }
+
+        
+        .has-dropdown > a::after {
+            content: " ▾";
+            font-size: 14px;
+        }
+
+        .dropdown {
+            list-style: none;
+            margin: 0;
+            padding: 8px 0;
+            position: absolute;
+            top: 100%;
+            left: -16px;
+            min-width: 220px;
+            background: #ffffff;
+            border: 2px solid #22262b;
+            display: none;
+        }
+
+        .has-dropdown:hover > .dropdown,
+        .has-dropdown:focus-within > .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            padding: 8px 16px;
+            border-bottom: none;
+        }
+
+        .dropdown a:hover,
+        .dropdown a:focus-visible {
+            background: #eef1f4;
+        }
+
+        
+
+        .hero {
+            padding: 56px 0 40px;
+        }
+
+        .hero h1 {
+            font-weight: normal;
+            font-size: 44px;
+            line-height: 1.1;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 52ch;
+            color: #5b636c;
+        }
+
+        
+
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-areas: "sidebar content";
+            gap: 48px;
+            align-items: start;
+            margin-bottom: 64px;
+        }
+
+        .layout > main { grid-area: content; min-width: 0; }
+        .layout > aside { grid-area: sidebar; }
+
+        main h2,
+        aside h2 {
+            font-weight: normal;
+            font-size: 24px;
+            margin: 0 0 12px;
+        }
+
+        .projects {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-top: 2px solid #22262b;
+        }
+
+        .projects li { border-bottom: 1px solid #c9ced4; }
+
+        .projects a {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 24px;
+            padding: 18px 8px;
+            text-decoration: none;
+        }
+
+        .projects a:hover,
+        .projects a:focus-visible {
+            background: #ffffff;
+            outline: none;
+        }
+
+        .projects .name { font-size: 24px; }
+
+        .projects .desc {
+            display: block;
+            font-size: 16px;
+            color: #5b636c;
+            margin-top: 2px;
+        }
+
+        .projects .tag {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            color: #5b636c;
+            white-space: nowrap;
+        }
+
+    
+
+        .side-nav {
+            border-top: 2px solid #22262b;
+            padding-top: 12px;
+        }
+
+        .side-nav h2 { font-size: 20px; }
+
+        .side-nav ul {
+            list-style: none;
+            margin: 0 0 24px;
+            padding: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+
+        .side-nav a:hover,
+        .side-nav a:focus-visible {
+            background: #ffffff;
+            border-left-color: #22262b;
+            outline: none;
+        }
+
+        
+
+        footer {
+            background: #22262b;
+            color: #c9ced4;
+            padding: 48px 0 24px;
+            font-size: 16px;
+        }
+
+        .footer-cols {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        footer h3 {
+            color: #ffffff;
+            font-weight: normal;
+            font-size: 20px;
+            margin: 0 0 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #4a5058;
+        }
+
+        footer ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer li { margin-bottom: 8px; }
+
+        footer a { text-decoration: none; }
+
+        footer a:hover,
+        footer a:focus-visible {
+            color: #ffffff;
+            text-decoration: underline;
+            outline: none;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 1px solid #4a5058;
+            font-size: 14px;
+            color: #8a929b;
+        }
+
+        
+
+        @media (max-width: 767px) {
+            .menu-btn { display: block; }
+
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #eef1f4;
+                border-bottom: 2px solid #22262b;
+                display: none;
+            }
+
+            .menu-toggle:checked ~ .main-nav { display: block; }
+
+            .main-nav > ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 8px 24px 16px;
+            }
+
+            .main-nav a { padding: 12px 0; }
+
+            
+            .has-dropdown > a::after { content: ""; }
+
+            .dropdown {
+                display: block;
+                position: static;
+                border: none;
+                background: none;
+                padding: 0 0 0 16px;
+                min-width: 0;
+            }
+
+            .dropdown a { padding: 8px 0; }
+
+            .hero { padding: 40px 0 28px; }
+            .hero h1 { font-size: 34px; }
+
+            
+            .layout {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "content"
+                    "sidebar";
+                gap: 40px;
+            }
+
+            .projects a { grid-template-columns: 1fr; gap: 6px; }
+
+            .footer-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="wrap">
+            <a class="logo" href="#">Moje projekty</a>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-btn">Menu</label>
+
+            <nav class="main-nav" aria-label="Hlavní navigace">
+                <ul>
+                    <li><a href="#">Domů</a></li>
+                    <li class="has-dropdown">
+                        <a href="#projekty">Projekty</a>
+                        <ul class="dropdown">
+                            <li><a href="hlavní.html">Projekt 1</a></li>
+                            <li><a href="#projekt-2">Projekt 2</a></li>
+                            <li><a href="#projekt-3">Projekt 3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#o-mne">O mně</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="wrap">
+
+        <section class="hero">
+            <h1>David Mezírek</h1>
+            <p>Navigace na věci, které jsem dělal. Kliknutím se dostanete přímo na projekt.</p>
+        </section>
+
+        <div class="layout">
+
+            <main id="projekty">
+                <h2>Projekty</h2>
+                <ul class="projects">
+
+                    <li id="projekt-1">
+                        <a href="hlavní.html">
+                            <span>
+                                <span class="name">Projekt 1</span>
+                                <span class="desc">Milníkový projekt.</span>
+                            </span>
+                            <span class="tag">2026</span>
+                        </a>
+                    </li>
+
+                    <li id="projekt-2">
+                        <a href="">
+                            <span>
+                                <span class="name">Projekt 2</span>
+                                <span class="desc">Zde bude taky něco.</span>
+                            </span>
+                            <span class="tag">2026</span>
+                        </a>
+                    </li>
+
+                    <li id="projekt-3">
+                        <a href="">
+                            <span>
+                                <span class="name">Projekt 3</span>
+                                <span class="desc">A zde bude taky něco.</span>
+                            </span>
+                            <span class="tag">2026</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </main>
+
+            <aside>
+                <nav class="side-nav" aria-label="Sekundární navigace">
+                    <h2>Podle typu</h2>
+                    <ul>
+                        <li><a href="#">Webové stránky</a></li>
+                        <li><a href="#">Aplikace</a></li>
+                        <li><a href="#">Školní práce</a></li>
+                    </ul>
+
+                    <h2 id="o-mne">O mně</h2>
+                    <ul>
+                        <li><a href="#">Životopis</a></li>
+                        <li><a href="#">Dovednosti</a></li>
+                        <li><a href="#kontakt">Napište mi</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer id="kontakt">
+        <div class="wrap">
+            <div class="footer-cols">
+
+                <section>
+                    <h3>Dokumenty</h3>
+                    <ul>
+                        <li><a href="#">Životopis (PDF)</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Certifikáty</a></li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Kontakty</h3>
+                    <ul>
+                        <li><a href="mailto:mezireda25@zaci.spse.cz">mezireda25@zaci.spse.cz</a></li>
+                        <li>SPŠE</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Sociální sítě</h3>
+                    <ul>
+                        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <p class="copyright">© 2026 David Mezírek</p>
+        </div>
+    </footer>
+
+</body>
+</html>

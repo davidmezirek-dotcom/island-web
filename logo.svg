@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 45" width="200" height="45">
+  <circle cx="24" cy="16" r="9" fill="#fbc02d" />
+  <polygon points="6,40 24,14 42,40" fill="#ffffff" />
+  <polygon points="18,40 32,18 46,40" fill="#e8ded1" opacity="0.85" />
+  <polygon points="21,14 27,14 24,18" fill="#b71c1c" />
+  <text x="56" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="0.5">Geo<tspan fill="#fbc02d">Mag</tspan></text>
+</svg>
